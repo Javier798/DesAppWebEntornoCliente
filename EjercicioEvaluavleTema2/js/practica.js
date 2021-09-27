@@ -25,12 +25,12 @@ document.write(`</ul>`);
 function combinacionesPosibles(cadena){
 document.write("<ul>");
 document.write(`<li>${cadena}</li>`);
-for(var i=0; i< cadena.length;i++){
-    document.write(`<li>${cadena.charAt(i)}</li>`);
-    for(var j=0; j< cadena.length;j++){
-        if(i!=j&&i<j)
-            document.write(`<li>${cadena.charAt(i)+cadena.charAt(j)}</li>`);
+for(var i=1; i< cadena.length;i++){
+    for (let j = 0; j+i <= cadena.length; j++) {
+         document.write(`<li>${cadena.substr(j,i)}</li>`);
     }
+    
+    
 }
 document.write("</ul>");
 }
@@ -92,4 +92,91 @@ function cuentaVocales(cadena){
         }
     }
     document.write(`<li>Entrada: ${cadena}; Salida: ${contVocales}</li>`);
+}
+document.write("<h1>Ejercicio 6</h1>");
+document.write("<ul>");
+devuelveTipo(2);
+devuelveTipo("cadena");
+devuelveTipo(true);
+document.write("</ul>");
+
+function devuelveTipo(tipo){
+    document.write(`<li>Entrada: ${tipo}; Salida: ${typeof(tipo)}</li>`);
+
+}
+
+
+document.write("<h1>Ejercicio 7</h1>");
+document.write("<ul>");
+cambiaMonedas(46, [25, 10, 5, 2, 1]);
+cambiaMonedas(40, [5,10,20]);
+cambiaMonedas(1500,[1000,200,45,20,5,1]);
+document.write("</ul>");
+
+function cambiaMonedas(numero, arrayValores){
+    var arrayResultado=[];
+    arrayValores.sort(function(a, b){return b - a});
+    document.write(`<li>Entrada: ${numero}, [${arrayValores}]; Salida: `);
+    for (let index = 0; index < arrayValores.length; index++) {
+        arrayResultado[index]= parseInt(numero/arrayValores[index]);
+        numero=numero%arrayValores[index];
+    }
+    for (let i = 0; i < arrayResultado.length; i++) {
+        for (let j = arrayResultado[i]; j !=0; j--) {
+            document.write(`${arrayValores[i]},</li>`);
+            
+        }
+        
+    }
+}
+
+document.write("<h1>Ejercicio 8</h1>");
+document.write(`<ul>`);
+document.write(`<li>Entrada: thequickbrownfoxjumpsovérthelazydog; Salida:`);
+repetidos("thequickbrownfoxjumpsovérthelazydog");
+document.write(`<li>Entrada: elcamiónrojoserompió; Salida: `);
+repetidos("elcamiónrojoserompió");
+document.write(`Entrada: losperrossonbonitos; Salida: `);
+repetidos("losperrossonbonitos");
+document.write(`</ul>`);
+
+function repetidos(cadena){
+    var array=[...cadena];
+    var arraydevovler=[];
+    var posiciones=0;  
+    
+    array.forEach(element => {
+        if(!arraydevovler.includes(element)){
+            arraydevovler.push(element);
+        }
+    });
+    
+    
+    document.write(`${arraydevovler.join("")}</li>`);
+
+}
+
+
+
+
+document.write("<h1>Ejercicio 9</h1>");
+document.write(`<ul>`);
+document.write(`<li>Entrada: 10; Salida: `);
+aleatorios(10);
+document.write(`<li>Entrada: 10; Salida: `);
+aleatorios(20);
+document.write(`<li>Entrada: 10; Salida: `);
+aleatorios(50);
+document.write(`</ul>`);
+
+function aleatorios(longitud){
+    var caracteresPosibles=[..."ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"];
+    var devovler="";
+    var numero;
+    for (let i = 0; i < longitud; i++) {
+        numero= parseInt(Math.random() * (62 - 0) + 0);
+        devovler+= caracteresPosibles[numero];
+    }
+    document.write(`${devovler}</li>`);
+
 }
