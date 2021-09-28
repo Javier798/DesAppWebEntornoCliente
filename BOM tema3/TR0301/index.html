@@ -1,0 +1,54 @@
+<script src="js/script.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+</head>
+<body>
+    <h2>Alarma</h2>
+    <p>Escriba dentro de cuanto tiempo quieres que te salude (en millisegundos)</p>
+    <button onclick="alarma()">Alarma</button>
+
+    <h2>Historial</h2>
+    <p>Pulse para saber la longitud del Historial</p>
+    <p>La longitud del historial depende de las paginas visitadas en esa pestaña antes de pulsar el boton.</p>
+    <p id="Length"></p>
+    <button onclick="longitudHistorial()">Mostrar longitud</button>
+
+    <h2>Navegar entre paginas</h2>
+    <p>Para que funcione debera haber navegado en algunas paginas primero.</p>
+    <h3>Ir a pagina anterior</h3>
+    <p>Pulse para volver a la pagina anterior</p>
+    <button onclick="anterior()">Volver</button>
+
+    <h3>Ir a pagina siguiente</h3>
+    <p>Pulse para volver a la pagina siguiente</p>
+    <button onclick="siguiente()">siguiente</button>
+
+    <h2>Crear ventanas</h2>
+
+    <p>Introduzca el tamaño de la ventana que quiere crear</p>
+    <button onclick="crearVentana()">crear ventana</button>
+
+    <h2>Aumentar tamaño de la ventana</h2>
+    <p>Introduzca cuanto quiere aumentar la pestaña</p>
+    <button onclick="aumentarTamaño()">Aumentar tamaño</button>
+
+    <h2>Recarga de pagina</h2>
+    <p>Cuando quuere que se recargue la apgina</p>
+    <button onclick="recargarPagina()">Recargar pagina</button>
+
+    <h2>ver URL</h2>
+    <p>URL</p>
+    <input type="text" id="url">
+
+    <button onclick="verURL()">URL</button>
+
+    <h2>Lanzar url</h2>
+    <p>Este boton lanzara la url del input del apartado anterior (probar con prueba.html)</p>
+    <button onclick="lanzarURL()">Lanzar</button>
+</body>
+</html>
