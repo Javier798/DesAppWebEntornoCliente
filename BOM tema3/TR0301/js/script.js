@@ -38,4 +38,8 @@ function verURL(){
 function lanzarURL(){
     window.open(document.getElementById("url").value,'_blank');
 }
+function cuentaAtras(){
+    let tiempo =prompt("Cuanto tiempo desea para la cuenta atras");
+    window.setTimeout(function(){window.close()},tiempo);
+}
 var w;
