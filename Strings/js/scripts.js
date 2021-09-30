@@ -65,7 +65,7 @@ function endsWith(string, string1) {
 document.write("<h1>Ejercicio 6</h1>");
 document.write("<ul>");
 document.write(`<li>Entrada: abcd. Salida: ${sucesor('abcd')}</li>`);
-
+document.write(`<li>Entrada: <>. Salida: ${sucesor('<>')}</li>`);
 document.write(`<li>Entrada: 3456. Salida: ${sucesor('3456')}</li>`);
 document.write(`<li>Entrada: ZZZ9999. Salida: ${sucesor('ZZZ9999')}</li>`);
 document.write(`<li>Entrad: THX1138. Salida: ${sucesor('THX1138')}</li>`);
@@ -75,14 +75,12 @@ function sucesor(string) {
     let longitudArray = array.length - 1;
     let contador = 0;
     for (let i = longitudArray; i >= 0; i--) {
-
         if (array[i] === 'z') {
             array[i] = 'a';
             contador++;
             if (array[i - 1] != 'Z' && array[i - 1] != 'z' && array[i - 1] != '9' && array[i - 1]) {
                 array[i - 1] = String.fromCharCode(array[i - 1].charCodeAt(0) + 1);
             }
-
         } else if (array[i] === 'Z') {
             contador++;
             array[i] = 'A';
@@ -96,35 +94,38 @@ function sucesor(string) {
             if (array[i - 1] != 'Z' && array[i - 1] != 'z' && array[i - 1] != '9' && array[i - 1]) {
                 array[i - 1] = String.fromCharCode(array[i - 1].charCodeAt(0) + 1);
             }
-
         } else {
             if (contador == 0) {
                 array[longitudArray] = String.fromCharCode(array[longitudArray].charCodeAt(0) + 1);
                 contador++;
             }
-
-
         }
     }
-
-
-
     return array.join("");
-
 }
 
-function comprobarUltimaletra(caracter) {
 
-}
-function comprobarCaracteres(caracter) {
-    if (caracter.charCodeAt < 123 && caracter.charCodeAt > 96) {
-        return true;
-    } else if (caracter.charCodeAt < 91 && caracter.charCodeAt > 64) {
-        return true;
-    } else if (caracter.charCodeAt < 58 && caracter.charCodeAt > 47) {
-        return true;
-    } else {
-        return false;
+document.write("<h1>Ejercicio 7</h1>");
+document.write("<ul>");
+let GUIS=new Array();
+document.write(`<li>Entrada: vacio .Salida: ${generarGUI()}</li>`);
+document.write(`<li>Entrada: . Salida: ${generarGUI(64)}</li>`);
+document.write(`<li>Entrada: 20. Salida: ${generarGUI(20)}</li>`);
+document.write(`<li>entrada: 38. Salida: ${generarGUI(38)}</li>`);
+document.write("</ul>");
+function generarGUI(numero){
+    let opciones =[..."abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPRSTUVWXYZ0123456789"];
+    let GUI="";
+    if(numero==undefined){
+        numero=32;
     }
-
+    do{
+    for (let i = 0; i < numero; i++) {
+        aleatorio=parseInt(Math.random() * (62 - 0) + 0);
+        GUI=GUI+ opciones[aleatorio];
+        
+    }
+    GUIS.push(GUI);
+}while(!GUIS.includes(GUI));
+    return GUI;
 }
