@@ -129,3 +129,21 @@ function generarGUI(numero){
 }while(!GUIS.includes(GUI));
     return GUI;
 }
+
+
+document.write("<h1>Ejercicio 8</h1>");
+document.write("<ul>");
+document.write(`<li>Entrada: PHP ~!@#$%^&*()+\`-={}[]|\\:\";\'/?><., MySQL .Salida: ${caracteresNoAlfanumericos("PHP ~!@#$%^&*()+`-={}[]|\\:\";\'/?><., MySQL")}</li>`);
+function caracteresNoAlfanumericos(cadena){
+    let opciones =[..."abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789"];
+    opciones.push(" ");
+    let devolver="";
+    for (let i = 0; i < cadena.length; i++) {
+        if (opciones.includes(cadena.charAt(i))) {
+            devolver= devolver+cadena.charAt(i);
+
+        }
+        
+    }
+    return devolver;
+}
