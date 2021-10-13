@@ -4,10 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/pruebaDOM.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
     <title>Document</title>
 </head>
 <body>
+    <div id="direccion">
+        <button class="button" onclick="anterior()">Anterior</button>
+        <button class="button" id="siguiente" onclick="siguiente()">Siguente</button>
+        <h1>Reloj</h1>
+        <p id="reloj"></p>
+        
+    </div>
     
+    
+    
+    <div id="alarmas">
+        <p id="horaTitulo">Introduzca la hora</p>
+        <input type="time" id="hora">
+        <button onclick="guardarAlarma()">Guardar</button>
+        <button onclick="cancelarAlarma()">Cancelar</button>
+    </div>
+    
+    <script src="js/pruebaDOM.js"></script>
 </body>
 </html>
