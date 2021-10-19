@@ -7,17 +7,34 @@ table {
     height: 521px;
  }
  td, th {
-    background: #fff;
-    color: #000;
+  background: #fff;
+  color: #000;
+  background-color: cornflowerblue;
+  font-family: sans-serif;
+ }
+ td ul{
+   text-align: left;
+   width: 200px;
  }
  table td:hover {
    cursor: pointer;
 }
+#reloj{
+  border: outset;
+    text-align: center;
+    font-size: 25px;
+    font-family: monospace;
+}
+#tituloreloj{
+  text-align: center;
+}
  td{
-     text-align: left;
-     vertical-align: text-bottom;
-     font-weight: bold;
-     font-size: 20px;
+  text-align: center;
+  vertical-align: text-bottom;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: cadetblue;
+  font-family: cursive;
  }
  #siguiente{
      float: right;
