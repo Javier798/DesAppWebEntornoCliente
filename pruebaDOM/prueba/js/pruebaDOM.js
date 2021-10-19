@@ -121,20 +121,20 @@ function guardarAlarma() {
     var hora = horaCompleta.split(":")[0];
     var minutos = horaCompleta.split(":")[1];
     dia = document.getElementById("alarmas").children[0].innerHTML.split(" ")[1];
-    if(dia.length>2){
-        dia= dia.substr(0,2);
+    if (dia.length > 2) {
+        dia = dia.substr(0, 2);
     }
     var alarma = new Date(fecha.getFullYear(), fecha.getMonth(), dia, hora, minutos, 0);
-    if(alarma.getTime()>new Date().getTime()){
+    if (alarma.getTime() > new Date().getTime()) {
         alarmas.push(alarma.getTime());
-        alarmas.sort(function(a, b){return a + b});
-        
+        alarmas.sort(function (a, b) { return a + b });
+
     }
     celda.classList.remove("mostrar");
-    var td=document.getElementById(dia);
+    var td = document.getElementById(dia);
 
     var lista = td.children[0];
-    if(lista!=null){
+    if (lista != null) {
         td.removeChild(lista);
     }
 
@@ -142,37 +142,42 @@ function guardarAlarma() {
     var ul = document.createElement("ul");
     ul.setAttribute("id", "lista");
     for (let i = 0; i < alarmas.length; i++) {
-        if(new Date(alarmas[i]).toDateString().split(" ")[2]==dia){
-        var li = document.createElement("li");
-        var texto = document.createTextNode(`${new Date(alarmas[i]).toDateString()} ${new Date(alarmas[i]).toTimeString().split(" ")[0]}`);
-        li.appendChild(texto);
-        ul.appendChild(li);
+        if (new Date(alarmas[i]).toDateString().split(" ")[2] == dia) {
+            var li = document.createElement("li");
+            var texto = document.createTextNode(`${new Date(alarmas[i]).toDateString()} ${new Date(alarmas[i]).toTimeString().split(" ")[0]}`);
+            li.appendChild(texto);
+            ul.appendChild(li);
         }
     }
     td.appendChild(ul);
 
-    
+
     //pintarAlarmas();
 }
 function pintarAlarmas() {
-    var bodi = Array.prototype.slice.call(document.body.children);
 
-    var lista = document.getElementById("lista");
-    if(lista!=null){
-        document.body.removeChild(lista);
-    }
-    
-
-
-    var ul = document.createElement("ul");
-    ul.setAttribute("id", "lista");
     for (let i = 0; i < alarmas.length; i++) {
-        var li = document.createElement("li");
-        var texto = document.createTextNode(`Alarma: ${new Date(alarmas[i]).toDateString()} ${new Date(alarmas[i]).toTimeString().split(" ")[0]}`);
-        li.appendChild(texto);
-        ul.appendChild(li);
+        var mesAlarma = new Date(alarmas[i]).getMonth();
+        var mesActual = fecha.getMonth();
+        var añoAlarma = new Date(alarmas[i]).getFullYear();
+        var añoActual = fecha.getFullYear();
+        if (mesAlarma == mesActual && añoAlarma == añoActual) {
+            var ul = document.createElement("ul");
+            ul.setAttribute("id", "lista");
+            var diaConAlarma = new Date(alarmas[i]).toDateString().split(" ")[2];
+            var td = document.getElementById(diaConAlarma);
+            var li = document.createElement("li");
+            var texto = document.createTextNode(`${new Date(alarmas[i]).toDateString()} ${new Date(alarmas[i]).toTimeString().split(" ")[0]}`);
+            li.appendChild(texto);
+            ul.appendChild(li);
+        }
+        if (td != undefined) {
+            td.appendChild(ul);
+        }
+
+
     }
-    document.body.appendChild(ul);
+
 
 }
 function cancelarAlarma() {

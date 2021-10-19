@@ -24,9 +24,9 @@
     </table>
     <form>
         <p>Fila</p>
-        <input type="number" id="fila">
+        <input type="number" id="fila" onchange="comprobarFilas()">
         <p>Columna</p>
-        <input type="number" id="columna">
+        <input type="number" id="columna" onchange="comprobarColumnas()">
         <p>Texto nuevo</p>
         <input type="text" id="texto">
         <input type="button" onclick="changeContent()" value="Change content">
