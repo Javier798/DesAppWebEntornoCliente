@@ -5,6 +5,7 @@ let dia = 0;
 var alarmas = new Array();
 var colores = new Array("red", "green", "yellow", "brown", "white");
 pintar(fecha);
+//el boton de siguiente mostrara el siguiente mes
 function siguiente() {
     var elemento = document.getElementById("tabla");
     document.body.removeChild(elemento);
@@ -13,6 +14,7 @@ function siguiente() {
     fecha.setMonth(fecha.getMonth() + 1);
     pintar(fecha);
 }
+//el boton de siguiente mostrara el mes anterior
 function anterior() {
     var elemento = document.getElementById("tabla");
     document.body.removeChild(elemento);
@@ -22,27 +24,25 @@ function anterior() {
     pintar(fecha);
 }
 function pintar(fehca) {
-
+    //obtenemos los dias del mes actual
     var diasMesActual = new Date(fehca.getFullYear(), fehca.getMonth() + 1, 0).getDate();
 
     var titulo = document.createElement("h3");
     titulo.setAttribute("id", "titulo");
     titulo.appendChild(document.createTextNode(meses[fecha.getMonth()] + " de " + fecha.getFullYear()));
     document.body.appendChild(titulo);
+    //empezamos a crear la tabla
     var tabla = document.createElement("table");
 
     tabla.setAttribute("id", "tabla");
     pintarDias(tabla);
     var contador = 0;
     var contadorId = 1;
-    var diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
     var tr = document.createElement("tr");
     for (let i = 1; i <= diasMesActual; i++) {
 
         var indice = new Date(fecha.getFullYear(), fecha.getMonth(+1), i).getDay();
-
-        console.log(diasSemana[indice] + " " + i);
-
+//si el contador es igual a 7 añadimos una nueva fila
         if (contador == 7) {
             tabla.appendChild(tr);
             tr = document.createElement("tr");
@@ -51,24 +51,37 @@ function pintar(fehca) {
             i--;
         } else {
             if (i == 1) {
+                //creamos los dias del mes que no tienen que tener evento ni numero
                 for (let j = 0; j < indice - 1; j++) {
                     let td = document.createElement("td");
-                    //td.setAttribute("id",contadorId);
+                    
                     tr.appendChild(td);
                     contador++;
-                    //contadorId++;
                     noEvent++;
                 }
             }
             let td = document.createElement("td");
             td.setAttribute("id", contadorId);
+            //añadimos el evento click
             td.addEventListener("click", function (ev) {
                 var celda = document.getElementById("alarmas");
                 celda.classList.add("mostrar");
                 dia = ev.currentTarget.innerHTMLM;
                 celda.children[0].innerHTML = "Dia " + ev.currentTarget.innerHTML + " " + meses[fecha.getMonth()];
             }, false);
-            td.appendChild(document.createTextNode(i))
+            td.appendChild(document.createTextNode(i));
+            //comprobamos y añadoimos si un dia tiene una alarma
+            var ul = document.createElement("ul");
+            for (let j = 0; j < alarmas.length; j++) {
+                if (new Date(alarmas[j]).getMonth() == fecha.getMonth() && new Date(alarmas[j]).getFullYear() == fecha.getFullYear()&&new Date(alarmas[j]).getDate() == i) {
+                    var li = document.createElement("li");
+                    li.appendChild(document.createTextNode(`${new Date(alarmas[j]).toDateString()} ${new Date(alarmas[j]).toTimeString().split(" ")[0]}`));
+                    ul.appendChild(li);
+
+                }
+
+            }
+            td.appendChild(ul);
             tr.appendChild(td);
             contadorId++;
             contador++;
@@ -80,10 +93,10 @@ function pintar(fehca) {
     tabla.appendChild(tr);
 
     document.body.appendChild(tabla);
-    pintarAlarmas()
 }
 
 function pintarDias(tabla) {
+    //creamos la primera parte de la tabla
     let lunes = document.createTextNode("Lunes");
     let martes = document.createTextNode("Martes");
     let Miercoles = document.createTextNode("Miercoles");
@@ -116,6 +129,7 @@ function pintarDias(tabla) {
     tabla.appendChild(trDias);
 }
 function guardarAlarma() {
+    //guardamos las alarmas
     var celda = document.getElementById("alarmas");
     var horaCompleta = document.getElementById("hora").value;
     var hora = horaCompleta.split(":")[0];
@@ -124,10 +138,12 @@ function guardarAlarma() {
     if (dia.length > 2) {
         dia = dia.substr(0, 2);
     }
+    //comprobamos que la fecha de la alarma no haya pasado
     var alarma = new Date(fecha.getFullYear(), fecha.getMonth(), dia, hora, minutos, 0);
     if (alarma.getTime() > new Date().getTime()) {
         alarmas.push(alarma.getTime());
         alarmas.sort(function (a, b) { return a + b });
+        alarmas.sort(function (a, b) { return a - b });
 
     }
     celda.classList.remove("mostrar");
@@ -138,7 +154,7 @@ function guardarAlarma() {
         td.removeChild(lista);
     }
 
-
+//pintamos las alarmas al clickar un dia
     var ul = document.createElement("ul");
     ul.setAttribute("id", "lista");
     for (let i = 0; i < alarmas.length; i++) {
@@ -180,12 +196,14 @@ function pintarAlarmas() {
 
 
 }
+//se cancela la alarma
 function cancelarAlarma() {
     var celda = document.getElementById("alarmas");
     celda.classList.remove("mostrar");
 }
-
+//Si la hora actual esta en el array sonará la alarma
 var intervaloPrincipal = setInterval(function () {
+
     var hora = new Date();
     hora.setSeconds(00);
     hora.setMilliseconds(00);
@@ -199,6 +217,7 @@ var intervaloPrincipal = setInterval(function () {
         let sonidoAlarma = document.createElement("audio");
         sonidoAlarma.setAttribute("src", "alarma.mp3");
         var color = setInterval(function () {
+            //hacemos sonar y cambiar de color la pantalla
             sonidoAlarma.play();
             document.body.style.backgroundColor = colores[parseInt(Math.random() * 4)];
             contador++;
@@ -207,7 +226,8 @@ var intervaloPrincipal = setInterval(function () {
                 sonidoAlarma.pause();
                 contador = 0;
                 document.body.style.backgroundColor = "white";
-                pintarAlarmas();
+                
+                alert("Tiene una alarma");
             }
         }, 250);
 
