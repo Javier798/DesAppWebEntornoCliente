@@ -16,6 +16,8 @@ document.getElementById("boton").onclick = function () {
     let palabrasCursivaBloque = [];
     let palabrasCursivaPagina = [];
     let enlaces = [];
+    var bloqueDeParrafos = [];
+    var contadorParrafos = 1;
     let enlacesBloque = [];
     let puntos = new Map()
     for (let i = 0; i < titulos.length; i++) {
@@ -46,10 +48,10 @@ document.getElementById("boton").onclick = function () {
             palaBrasTotales += " " + item.innerHTML.toLowerCase();
             palabrasPagina += " " + item.innerHTML.toLowerCase();
             enlacesParrafo = Array.from(item.querySelectorAll("a"));
-            enlacesParrafoTexto=[];
+            enlacesParrafoTexto = [];
             for (let i = 0; i < enlacesParrafo.length; i++) {
                 palabrasParrafo = palabrasParrafo.concat(enlacesParrafo[i].innerHTML.toLowerCase().split(" "));
-                enlacesParrafoTexto=enlacesParrafo[i].innerHTML.toLowerCase().split(" ");
+                enlacesParrafoTexto = enlacesParrafo[i].innerHTML.toLowerCase().split(" ");
                 enlacesBloque = enlacesBloque.concat(enlacesParrafoTexto);
                 for (let j = 0; j < palabrasParrafo.length; j++) {
                     palabrasPagina += " " + palabrasParrafo[i];
@@ -63,12 +65,14 @@ document.getElementById("boton").onclick = function () {
             palabrasParrafo.clean("");
             palabrasParrafo.clean("\n");
             palabrasParrafo = limpiaPalabras(palabrasParrafo);
+            bloqueDeParrafos.push(palabrasParrafo);
             palabrasParrafo = [...cuentaPalabras(palabrasParrafo, contadorPalabrasParrafo).entries()].sort((a, b) => b[1] - a[1]);
 
             var values = Object.values(palabrasParrafo);
 
 
-            var escribir = "";
+            var escribir = "<h4>Parrafo: " + contadorParrafos + "</h4>";
+            contadorParrafos++;
             for (let i = 0; i < 3; i++) {
                 if (palabrasNegritaParrafo.includes(values[i][0].toLowerCase())) {
                     escribir += "<br><span style=' border: 1px solid black'>" + values[i] + ", esta en negrita";
@@ -83,10 +87,10 @@ document.getElementById("boton").onclick = function () {
                 if (enlacesParrafoTexto.includes(values[i][0].toLowerCase())) {
                     var contador = 0;
                     for (let j = 0; j < enlacesParrafoTexto.length; j++) {
-                        if (values[i][0].toLowerCase() == enlacesParrafoTexto   [i]) {
+                        if (values[i][0].toLowerCase() == enlacesParrafoTexto[i]) {
                             contador++;
                         }
-    
+
                     }
                     escribir += " y esta aparece en enlaces " + contador + " veces</span>";
                 } else {
@@ -137,17 +141,31 @@ document.getElementById("boton").onclick = function () {
                     }
 
                 }
-                escribirBloque += " y esta aparece en enlaces " + contador + " veces</span>";
+                escribirBloque += " y esta aparece en enlaces " + contador + " veces";
             } else {
-                escribirBloque += " y no aparece en enlaces</span>";
+                escribirBloque += " y no aparece en enlaces";
+            }
+            var contadorPalabrasEnParrafos = 0;
+
+            for (let j = 0; j < bloqueDeParrafos.length; j++) {
+                if (bloqueDeParrafos[j].includes(values[i][0].toLowerCase()))
+                    contadorPalabrasEnParrafos++;
+
+            }
+            if (contadorPalabrasEnParrafos == bloqueDeParrafos.length) {
+                escribirBloque += " y esta aparece todos los parrafos</span>";
+            } else {
+                escribirBloque += " y esta no aparece todos los parrafos</span>";
             }
         }
+
         contadorPalabrasBloque = new Map();
         titulos[i].insertAdjacentHTML("beforebegin", escribirBloque);
         palaBrasTotales = "";
         palabrasNegritaBloque = [];
         enlacesBloque = [];
         claves = [];
+        bloqueDeParrafos = [];
     }
     palabrasPagina = palabrasPagina.split(" ");
     palabrasPagina.clean("");
@@ -157,7 +175,7 @@ document.getElementById("boton").onclick = function () {
     puntos = contadorPalabrasPagina;
     var titulosTexto = [];
     for (let titulo = 0; titulo < titulos.length; titulo++) {
-        titulosTexto= titulosTexto.concat(titulos[titulo].innerHTML.toLocaleLowerCase().split(" "));
+        titulosTexto = titulosTexto.concat(titulos[titulo].innerHTML.toLocaleLowerCase().split(" "));
     }
     var values = Object.values(palabrasPagina);
     var escribirPagina = "<h4>Palabras repetidas</h4>";
@@ -199,13 +217,18 @@ document.getElementById("boton").onclick = function () {
     }
     var palabrasEnlace = "<h4>Relacion de enlaces y palabras repetidas</h4>";
     for (let i = 0; i < 3; i++) {
+        var bool = true;
         for (let j = 0; j < href.length; j++) {
-            if (href[j].includes(values[i][0].toLowerCase())) {
+            if (href[j].toLocaleLowerCase().includes(values[i][0].toLowerCase())) {
                 palabrasEnlace += "<span>La plabra " + values[i][0].toUpperCase() + " aparece en enlaces</span><br>";
+                bool = false;
                 continue;
             }
         }
-        palabrasEnlace += "<span>La plabra " + values[i][0].toUpperCase() + " no aparece en enlaces</span><br>";
+        if (bool) {
+            palabrasEnlace += "<span>La plabra " + values[i][0].toUpperCase() + " no aparece en enlaces</span><br>";
+        }
+
     }
     var clavesPuntos = Object.keys(puntos);
     for (let i = 0; i < claves.length; i++) {
@@ -297,6 +320,7 @@ let articulos = [
     "más",
     "muchos",
     "I",
+    "vez",
     "una",
     "fue",
     "Su",
@@ -304,8 +328,10 @@ let articulos = [
     "al",
     "el",
     "e",
+    "ha",
     "del",
     "la",
+    "muy",
     "los",
     "lo",
     "las",
@@ -317,6 +343,11 @@ let articulos = [
     "cabe",
     "con",
     "contra",
+    "era",
+    "será",
+    "son",
+    "fueron",
+    "hace",
     "de",
     "desde",
     "en",
