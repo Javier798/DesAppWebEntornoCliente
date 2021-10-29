@@ -1,0 +1,23 @@
+#parteSuperior{
+    display: flex;
+}
+#parteInferior{
+    display: flex;
+}
+#imagen{
+    width: 25%;
+}
+#titulo{
+    width: 75%;
+}
+#estudios{
+    width: 25%;
+}
+#experiencia{
+    width: 75%;
+}
+#drop_zone {
+    border: 5px solid blue;
+    width:  200px;
+    height: 100px;
+  }
