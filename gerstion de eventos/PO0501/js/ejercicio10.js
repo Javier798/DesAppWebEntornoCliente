@@ -4,9 +4,7 @@ window.onload = function () {
     inputs[1].focus();
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener("change",ValidaCampos);
-
     }
-
 }
 function ValidaCampos(evento) {
     let objeto = evento.currentTarget;

@@ -1,28 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario</title>
     <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
+
 <body>
-    <div id="parteSuperior">
-        <div id="imagen">
-            <P>ALGO</P>
+    <form action="">
+        <div id="parteSuperior">
+            <div id="imagen">
+                <div id="holder">
+                    <div id="images">
+                        <p id="textoImagen">inserte aqui la imagen</p>
+                    </div>
+                </div>
+            </div>
+            <div id="titulo">
+                <h1>Informacion General</h1>
+                <textarea name="" id="" cols="30" rows="5"
+                    placeholder="Desarrollador de software bilingüe con experiencia en aplicaciones web. Tras más de 7 años trabajando en empresas de tecnología, no solo tengo conocimientos en SQL, Jira, Jenkins y Git, sino que también he logrado reducir el número de errores en los reportes semanales de mi actual puesto en un 15%. Deseo formar parte de TechSolutions para generar proyectos funcionales que superen las expectativas de los clientes de la empresa."></textarea>
+                <div id="contenido">
+                    <div id="primeraColumna">
+                        <div class="informacionGeneral">
+                            <i class="fa fa-map-marker-alt tamañoInput" aria-hidden="true"></i>
+                            <input type="text" placeholder="C\ Las curces Nº1" id="map"
+                                onchange="comprobarDireccionFisica(this)">
+                            <small class="form-control">Introduzca una direccion valida</small>
+                        </div>
+                        <div class="informacionGeneral">
+                            <i class="fa fa-phone tamañoInput" aria-hidden="true"></i>
+                            <input type="number" placeholder="941345689" onkeypress="maxTelefono(this)"
+                                onchange="comprobarTelefono(this)">
+                            <small class="form-control">Introduce un telefono valido</small>
+                        </div>
+                        <div class="informacionGeneral">
+                            <i class="tamañoInput fa fa-envelope" aria-hidden="true"></i>
+                            <input type="email" placeholder="email@gmail.com" onchange="comprobarEmail(this)">
+                            <small class="form-control">Introduca una direccion de email valida</small>
+                        </div>
+                    </div>
+                    <div id="segundaColumna">
+                        <div class="informacionGeneral">
+                            <i class="tamañoInput fab fa-linkedin-in"></i>
+                            <input type="text" placeholder="url.linkedin" onchange="comprobarDireccion(this)">
+                            <small class="form-control">Introduzca una direccion valida</small>
+                        </div>
+                        <div class="informacionGeneral">
+                            <i class="tamañoInput fab fa-skype"></i>
+                            <input type="text" placeholder="url.skype" onchange="comprobarDireccion(this)">
+                            <small class="form-control">Introduzca una direccion valida</small>
+                        </div>
+                        <div class="informacionGeneral">
+                            <i class="fab fa-twitter tamañoInput"></i>
+                            <input type="text" placeholder="perfil.twitter" onchange="comprobarDireccion(this)">
+                            <small class="form-control">Introduzca una direccion valida</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="titulo">
-            <p>pepe</p>
+        <div id="parteInferior">
+            <div id="estudios">
+                <h1>Estudios</h1>
+                <div class="bloqueEstudios">
+                    <div id="eliminarEstudios" onclick="eliminarEstudios(this)">
+                        <i class="fas fa-minus"></i>
+                    </div>
+                    <div class="fechaEstudios">
+                        <h6>Desde: <input type="date"></h6>
+                        <h6>Hasta: <input type="date"></h6>
+                    </div>
+                    <div class="contenidoEstudios">
+                        <input onkeypress="noNumeros(event)" list="browsers" placeholder="Escoja sus estudios" name="browser" id="browser">
+                        <datalist id="browsers">
+                            <option value="SMR">
+                            <option value="DAW">
+                            <option value="DAM">
+                            <option value="Comercio">
+                            <option value="Comercio Internacional">
+                            <option value="Soldadura">
+                            <option value="Mecanica">
+                        </datalist>
+                        <small class="form-control">Introduzca solo texto</small>
+                        <input type="text" placeholder="Google Academy" onchange="soloTexto(this)">
+                        <small class="form-control">Introduzca solo texto</small>
+                        <input type="text" placeholder="Madrid" onchange="soloTexto(this)">
+                        <small class="form-control">Introduzca solo texto</small>
+                    </div>
+                    <hr>
+                </div>
+                <div id="añadirEstudios" onclick="añadirEstudios()">
+                    <i class="fas fa-plus"></i>
+                </div>
+            </div>
+            <div id="barras">
+                <div id="experiencia">
+                    <h1>Experiencia</h1>
+                    <div class="bloqueExperiencia">
+                        <div id="eliminarExperiencia" onclick="eliminarExperiencia(this)">
+                            <i class="fas fa-minus"></i>
+                        </div>
+                        <div class="tituloExperiencia">
+                            <div>
+                                <h4>Puesto: <input type="text" placeholder="Digital marketing manager"
+                                        onchange="soloTextoEspecial(this)"></h4>
+                                <small class="form-control">Introduzca solo texto</small>
+                            </div>
+
+                            <div>
+                                <h4>Empresa: <input type="text" placeholder="Regalador.com"
+                                        onchange="soloTextoEspecial(this)">
+                                </h4>
+                                <small class="form-control">Introduzca solo texto</small>
+                            </div>
+
+                        </div>
+                        <div class="contenidoExperiencia">
+                            <h4>Desde: <input type="date"></h4>
+                            <h4>Hasta: <input type="date"></h4>
+                        </div>
+                        <div class="descripcionExperiencia">
+                            <textarea name="" id="" cols="30" rows="5" placeholder="Descripcion"></textarea>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div id="añadirExperiencia" onclick="añadirExperiencia()">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+                <h1 id="h1habilidades">Habilidades</h1>
+                <div id="medidores">
+                    <div class="inputDiv">
+
+                        <div class="estructuraBarras">
+                            <h2>Word</h2>
+                            <input type="range" onchange="valorBarras(this)" oninput="valorBarras(this)" value="50"
+                                min="0" max="100" autocomplete="off" id="input3">
+                        </div>
+
+                    </div>
+                    <div class="inputDiv">
+                        <div class="estructuraBarras">
+                            <h2>Excel</h2>
+                            <input type="range" value="50" min="0" max="100" oninput="valorBarras(this)"
+                                onchange="valorBarras(this)" autocomplete="off" id="input3">
+                        </div>
+
+                    </div>
+                    <div class="inputDiv">
+                        <div class="estructuraBarras">
+                            <h2>Java</h2>
+                            <input type="range" value="50" min="0" max="100" onchange="valorBarras(this)"
+                                oninput="valorBarras(this)" autocomplete="off" id="input3">
+                        </div>
+
+                    </div>
+                    <div class="inputDiv">
+                        <div class="estructuraBarras">
+                            <h2>Access</h2>
+                            <input type="range" value="50" min="0" max="100" oninput="valorBarras(this)"
+                                onchange="valorBarras(this)" autocomplete="off" id="input3">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div id="parteInferior">
-        <div id="estudios">
-            <p>estudios</p>
+        <div id="nombre">
+            <input type="text" id="nombre1" onkeypress="noNumeros(event)" placeholder="Nombre Apellidos">
         </div>
-        <div id="experiencia">
-            <p>experiencia</p>
+
+        <div id="enviar">
+            <input onclick="comprobarValores()" type="submit">
         </div>
-    </div>
+    </form>
+    <script src="./js/script.js"></script>
+
 </body>
+
 </html>

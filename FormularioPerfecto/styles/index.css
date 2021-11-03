@@ -1,23 +1,296 @@
-#parteSuperior{
+#parteSuperior {
     display: flex;
 }
-#parteInferior{
+
+#parteInferior {
     display: flex;
 }
-#imagen{
-    width: 25%;
+
+#imagen {
+    width: 18%;
 }
-#titulo{
+
+#barras {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    width: 100%;
+}
+
+#titulo {
+    width: 75%;
+    text-align: center;
+    font-size: 20pt;
+    background-color: #90cbdd;
+}
+
+#estudios {
+    width: 18%;
+    font-size: 20pt;
+    text-align: center;
+}
+
+#experiencia {
+    width: 91%;
+    text-align: center;
+    font-size: 20pt;
+    margin-left: 3%;
+}
+
+div#holder {
+    border: 5px dashed #ccc;
+    height: 326px;
+    width: 100%;
+    font-family: Verdana;
+    text-align: center;
+}
+
+#images img {
+    width: 100%;
+    height: 324px;
+}
+
+#primeraColumna {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.tamañoInput {
+    text-align: left;
+    margin-top: 23px;
+    margin-left: 8%;
+}
+
+#titulo h1 {
+    border-bottom: solid #5989d1;
+    margin-left: 5%;
+    margin-bottom: 0;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#nombre {
+    position: absolute;
+    top: 289px;
+    width: 17.7%;
+    left: 14px;
+    text-align: center;
+    height: 5%;
+    background-color: aquamarine;
+    border-radius: 21px;
+}
+
+.form-controlerror {
+    color: red;
+    visibility: visible;
+    font-size: 10pt;
+    margin-top: 5px;
+}
+
+.form-control {
+    color: var(--error-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+#nombre input {
+    margin-top: 11px;
+    border: 0;
+    background: aquamarine;
+    text-align: center;
+    font-size: 23px;
+    width: 90%;
+    text-align: center;
+}
+
+.correcto {
+    border-bottom: 3px solid green;
+}
+
+.informacionGeneral input {
+    margin-left: 35px;
+    border: 0;
+    border-bottom: solid darkcyan;
+    background-color: #90cbdd;
+}
+
+.informacionGeneral {
+    display: flex;
+    flex-direction: column;
+}
+
+#contenido {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1%;
+}
+
+#experiencia input {
+    margin-left: 35px;
+    border: 0;
+    border-bottom: solid darkcyan;
+    font-size: 13pt;
+    background-color: #90cbdd;
+}
+
+.tituloExperiencia {
+    display: flex;
+    justify-content: space-around;
+}
+
+.descripcionExperiencia {
+    margin-right: 6%;
+}
+
+.descripcionExperiencia textarea {
+    margin-left: 35px;
+    border: 0;
+    border-bottom: solid darkcyan;
+    width: 100%;
+    resize: none;
+    background-color: #90cbdd;
+}
+
+#titulo textarea {
+    margin-left: 7%;
+    border: 0;
+    border-bottom: solid darkcyan;
+    width: 85%;
+    resize: none;
+    background-color: #90cbdd;
+    margin-top: 2%;
+}
+
+.contenidoExperiencia {
+    display: flex;
+    justify-content: space-around;
+}
+
+#añadirExperiencia {
+    cursor: pointer;
+    max-width: min-content;
+}
+
+#eliminarEstudios {
+    cursor: pointer;
+    max-width: min-content;
+}
+
+#eliminarExperiencia {
+    cursor: pointer;
+    max-width: min-content;
+}
+
+#estudios h1 {
+    border-bottom: solid #5989d1;
+    margin-bottom: 0;
+    margin-right: 25%;
+    width: 100%;
+}
+
+#añadirEstudios {
+    cursor: pointer;
+    max-width: min-content;
+}
+
+#estudios input {
+    margin-left: 25px;
+    border: 0;
+    border-bottom: solid darkcyan;
+    font-size: 0.7vw;
+    background-color: #90cbdd;
+}
+
+.fechaEstudios {
+    display: flex;
+    align-content: stretch;
+    justify-content: flex-end;
+}
+
+.contenidoEstudios input {
+    margin-left: 0;
+}
+
+.contenidoEstudios {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+#map {
+    margin-left: 41px;
+}
+
+body {
+    background-color: #90cbdd;
+}
+
+.bloqueExperiencia h4 {
+    margin-bottom: 0;
+}
+
+#medidores input {
     width: 75%;
 }
-#estudios{
-    width: 25%;
+
+#medidores {
+    width: 90%;
+    align-self: center;
 }
-#experiencia{
-    width: 75%;
+
+.estructuraBarras {
+    display: flex;
+    justify-content: space-around;
 }
-#drop_zone {
-    border: 5px solid blue;
-    width:  200px;
-    height: 100px;
-  }
+
+.etiqueta {
+    text-align: center;
+}
+
+.etiqueta p {
+    font-family: cursive;
+}
+
+#experiencia h1 {
+    border-bottom: solid #5989d1;
+    margin-bottom: 0;
+    margin-right: 4%;
+    text-align: center;
+}
+
+#h1habilidades {
+    font-size: 39pt;
+    margin-top: 10px;
+    margin-left: 3%;
+    border-bottom: solid #5989d1;
+    margin-bottom: 0;
+    margin-right: 9%;
+    text-align: center;
+}
+
+#medidores h2 {
+    margin-top: 0;
+}
+
+#enviar input {
+    width: 100%;
+    border-radius: 15px;
+    background-color: cornflowerblue;
+    font-size: 20px;
+}
+#enviar input:hover {
+cursor: pointer;
+}
+#enviar{
+    margin-top: 3%;
+}
