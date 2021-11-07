@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/index.css">
+    <title>Biblioteca</title>
+</head>
+
+<body>
+    <div id="total">
+        <div id="izquierda">
+            <div class="border" id="cabeceraIzquierda">
+                <p id="lectorActual">Lector actual</p>
+                <button onclick="multar()">Multar</button>
+            </div>
+            <div class="border" id="prestamos">
+                <h1>Prestamos del Lector</h1>
+                <div id="mostrarPrestamos">
+
+                </div>
+                
+            </div>
+            <div class="border" id="multas">
+                <h1>Multas activas</h1>
+                <div id="verMultas">
+
+                </div>
+            </div>
+        </div>
+        <div id="derecha">
+            <div class="border" id="lectores">
+                <h1>Lectores</h1>
+                <div id="verLectores">
+
+                </div>
+            </div>
+            <div class="border" id="biblioteca">
+                <h1>Biblioteca</h1>
+                <div id="libros">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/Autor.js"></script>
+    <script src="./js/Libro.js"></script>
+    <script src="./js/copia.js"></script>
+    <script src="./js/Lector.js"></script>
+    <script src="./js/multa.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
