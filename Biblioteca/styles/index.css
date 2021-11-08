@@ -1,0 +1,65 @@
+#total{
+display: flex;
+width: 100%;
+}
+#izquierda{
+    width: 25%;
+}
+#derecha{
+    width: 75%;
+}
+#cabeceraIzquierda{
+    display: flex;
+    justify-content: space-around;
+    margin: 5px;
+}
+.border{
+    border: solid 2px black;
+    text-align: center;
+}
+
+#multas{
+    margin: 5px;
+    overflow-y: scroll;
+    height: 480px;
+}
+#prestamos{
+    margin: 5px;
+    overflow-y: scroll;
+    height: 400px;
+}
+#biblioteca{
+    height: 540px;
+    margin: 5px;
+    overflow-y: scroll;
+}
+#lectores{
+    height: 400px;
+    margin: 5px;
+    overflow-y: scroll;
+}
+.libro p{
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.libro{
+    margin: 5px;
+    padding: 3px;
+}
+#libros{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+#verLectores{
+    display: flex;
+    flex-wrap: wrap;
+}
+.clientes{
+    margin: 5px;
+    padding: 3px;
+}
+.clientes p{
+    margin-top: 3px;
+    margin-bottom: 1px;
+}
