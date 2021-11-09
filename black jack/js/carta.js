@@ -6,9 +6,11 @@ class carta{
         PICAS:"PICAS",
         ROMBOS:"ROMBOS"
     }
-    constructor(palo,valor){
+    simbolo;
+    constructor(palo,valor,simbolo){
         this.valor=valor;
-        this.palo =palo;
+        this.palos =palo;
+        this.simbolo=simbolo;
     }
     get valor() {
         return this.valor;
@@ -17,9 +19,18 @@ class carta{
         this.valor = value;
     }
     get palo() {
-        return this.palo;
+        return this.palos;
     }
     set palo(value) {
         this.palo = value;
+    }
+    get simbolo(){
+        return this.simbolo;
+    }
+    set simbolo(simbolo){
+        this.simbolo=simbolo;
+    }
+    toString(){
+        return this.simbolo +" de "+this.palo+". Valor de la carta: "+this.valor;
     }
 }
