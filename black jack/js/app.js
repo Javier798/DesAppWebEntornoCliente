@@ -22,6 +22,8 @@ if(muestraCartaTrasera){
         document.getElementById("resultado").innerHTML = "<p>Has perdido</p>";
     } else {
         document.getElementById("resultado").innerHTML = "<p>Has ganado</p>";
+        balance= balance+(apuesta*2);
+            document.getElementById("balance").children[0].innerHTML="Balance: "+balance;
     }
 }
 function pedirCarta(player) {
@@ -38,22 +40,32 @@ function pedirCarta(player) {
     for (let i = 0; i < player.cartas.length; i++) {
         mostrarCartas(player);
     }
+    if(player.nombre=="banca"){
+        document.getElementById("mesa").children[0].innerHTML ="Mesa: "+puntos;
+    }else{
+        document.getElementById("jugador").children[0].innerHTML ="Jugador: "+puntos;
+    }
     if (puntos > 21) {
         perdido = true;
-        if (player.nombre == "banca") {
+        if (player.nombre == "banca"&&puntos>21) {
             document.getElementById("resultado").innerHTML = "<p>Has ganado</p>";
             document.getElementById("pedirCarta").disabled = true;
             document.getElementById("plantarse").disabled = true;
+            document.getElementById("iniciarPartida").disabled=false;
             partida = false;
+            balance= balance+(apuesta*2);
+            document.getElementById("balance").children[0].innerHTML="Balance: "+balance;
         } else {
             document.getElementById("resultado").innerHTML = "<p>Has perdido</p>";
             document.getElementById("pedirCarta").disabled = true;
             document.getElementById("plantarse").disabled = true;
+            document.getElementById("iniciarPartida").disabled=false;
             partida = false;
         }
     }
 }
 function mePlanto() {
+    document.getElementById("iniciarPartida").disabled=false;
     if (!partida) {
         alert("Inicie la partida para empezar");
         return;
@@ -64,7 +76,8 @@ function mePlanto() {
 }
 
 function iniciarPartida() {
-    
+    document.getElementById("iniciarPartida").disabled=true;
+    document.getElementById("jugador").children[0].innerHTML ="Jugador: ";
     mesa++;
     jugador = new mano(7, "jugador");
     banca = new mano(7, "banca");
@@ -73,8 +86,10 @@ function iniciarPartida() {
     document.getElementById("cartasJugador").innerHTML = "";
     document.getElementById("pedirCarta").disabled = false;
     document.getElementById("plantarse").disabled = false;
-    document.getElementById("jugador").children[0].innerHTML = "Jugador: " + prompt("Introduzca su nombre");
-    document.getElementById("apuesta").children[0].innerHTML = "Apuesta: " + prompt("Introduzca su apuesta");
+    apuesta =prompt("Introduzca su apuesta");
+    balance= balance-apuesta;
+    document.getElementById("balance").children[0].innerHTML="Balance: "+balance;
+    document.getElementById("apuesta").children[0].innerHTML = "Apuesta: " + apuesta;
     document.getElementById("mesa").children[0].innerHTML= "Mesa: " +mesa;
     partida = true;
     palos = {
@@ -108,4 +123,11 @@ function mostrarCartas(player) {
         }
     }
 
+}
+window.onload=()=>{
+    setTimeout(() => {
+        balance=prompt("Intoduzca el balance",100);
+        document.getElementById("balance").children[0].innerHTML="Balance: " + balance;
+    }, 1000);
+    
 }

@@ -86,7 +86,7 @@ body{
 }
 #informacion{
     font-size: 45px;
-    margin-left: 7%;
+    margin-left: 1.5%;
     
 }
 #plantarse{
@@ -127,4 +127,16 @@ body{
     color: red;
     font-family: fantasy;
     top: 31%;
+}
+#jugador{
+    width: 22%;
+}
+#mesa{
+    width: 22%;
+}
+#balance{
+    width: 22%;
+}
+#apuesta{
+    width: 22%;
 }
