@@ -26,10 +26,20 @@ class mazo {
         this.alea = value;
     }
     darCarta() {
-
+        var numero = parseInt(Math.random()*this.baraja.length);
+        var carta = this.baraja[numero];
+        this.remove(this.baraja,carta);
+        return carta;
     }
     barajear() {
-        this.baraja = this.baraja.sort(function () {return this.alea -0.5});
+        this.baraja = this.baraja.sort( function() {return Math.random() -0.5});
+    }
+    remove(arr, item) {
+        for(var i = arr.length; i--;) {
+            if(arr[i] === item) {
+                arr.splice(i, 1);
+            }
+        }
     }
     generarBaraja() {
         var palo;
@@ -37,7 +47,7 @@ class mazo {
             TREBOLES: "TREBOLES",
             CORAZONES: "CORAZONES",
             PICAS: "PICAS",
-            ROMBOS: "ROMBOS"
+            ROMBOS: "DIMANTES"
         }
 
         for (let i = 1; i <= 4; i++) {

@@ -4,7 +4,7 @@ class carta{
         TREBOLES:"TREBOLES",
         CORAZONES:"CORAZONES",
         PICAS:"PICAS",
-        ROMBOS:"ROMBOS"
+        ROMBOS:"DIMANTES"
     }
     simbolo;
     constructor(palo,valor,simbolo){

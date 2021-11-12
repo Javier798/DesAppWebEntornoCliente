@@ -2,12 +2,11 @@ class mano {
     numCartas;
     TOPE = 20;
     cartas;
-    constructor(num){
+    nombre;
+    constructor(num, nombre){
         this.numCartas = num;
         this.cartas= new Array();
-    }
-    constructor(){
-        this(0);
+        this.nombre =nombre;
     }
     descartaTodas(){
         this.cartas=[];
@@ -16,14 +15,27 @@ class mano {
         this.cartas.push(carta);
     }
     cuentaPuntos(){
-        puntos=0;
+        var puntos=0;
+        var ases=0;
         for (let i = 0; i < this.cartas.length; i++) {
             puntos+=this.cartas[i].valor;
+            if(this.cartas[i].simbolo=="AS"){
+                ases++;
+            }
+        }
+        for (let i = 0; i < ases; i++) {
+            if(puntos+10<=21){
+                puntos+=10;
+            }
+            
         }
         return puntos;
     }
     get numCartas(){
         return this.numCartas;
+    }
+    get nombre(){
+        return this.nombre;
     }
     toString(){
         devovler="";

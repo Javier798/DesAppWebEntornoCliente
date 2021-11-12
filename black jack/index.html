@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/styles.css">
     <title>Document</title>
 </head>
+
 <body>
+    <div id="informacion">
+        <div id="mesa">
+            <p>Mesa</p>
+        </div>
+        <div id="jugador">
+            <p>Jugador</p>
+        </div>
+        <div id="balance">
+            <p>Balance</p>
+        </div>
+        <div id="apuesta">
+            <p>Apuesta</p>
+        </div>
+    </div>
+    <div id="resultado">
+
+    </div>
+    <div id="cartasBanca"></div>
+    <div id="cartasJugador"></div>
+    
+    <button id="iniciarPartida" onclick="iniciarPartida()">Iniciar partida</button>
+    <button id="plantarse" onclick="mePlanto()">Plantarse</button>
+    <button id="pedirCarta" onclick="pedirCarta()">Pedir carta</button>
     <script src="./js/carta.js"></script>
     <script src="./js/mano.js"></script>
     <script src="./js/mazo.js"></script>
     <script src="./js/app.js"></script>
 </body>
+
 </html>

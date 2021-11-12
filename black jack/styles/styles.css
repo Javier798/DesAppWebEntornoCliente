@@ -1,0 +1,130 @@
+:root {
+    --width: 71px;
+    --height: 96px;
+}
+
+.carta {
+    background-image: url(../img/cartas.png);
+    width: var(--width);
+    height: var(--height);
+}
+
+.AS {
+    background-position-x: calc(var(--width) * -0);
+}
+
+.DOS {
+    background-position-x: calc(var(--width) * -1);
+}
+
+.TRES {
+    background-position-x: calc(var(--width) * -2);
+}
+
+.CUATRO {
+    background-position-x: calc(var(--width) * -3);
+}
+
+.CINCO {
+    background-position-x: calc(var(--width) * -4);
+}
+
+.SEIS {
+    background-position-x: calc(var(--width) * -5);
+}
+
+.SIETE {
+    background-position-x: calc(var(--width) * -6);
+}
+
+.OCHO {
+    background-position-x: calc(var(--width) * -7);
+}
+
+.NUEVE {
+    background-position-x: calc(var(--width) * -8);
+}
+
+.DIEZ {
+    background-position-x: calc(var(--width) * -9);
+}
+
+.J {
+    background-position-x: calc(var(--width) * -10);
+}
+
+.Q {
+    background-position-x: calc(var(--width) * -11);
+}
+
+.K {
+    background-position-x: calc(var(--width) * -12);
+}
+
+.PICAS {
+    background-position-y: calc(var(--height) * -0);
+}
+
+.CORAZONES {
+    background-position-y: calc(var(--height) * -1);
+}
+
+.TREBOLES {
+    background-position-y: calc(var(--height) * -2);
+}
+
+.DIMANTES {
+    background-position-y: calc(var(--height) * -3);
+}
+.BACK{
+    background-position-y: calc(var(--height) * -4);
+}
+body{
+    background: url(../img/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#informacion{
+    font-size: 45px;
+    margin-left: 7%;
+    
+}
+#plantarse{
+    position: absolute;
+    bottom: 17px;
+    right: 100px;
+    font-size: 25px;
+}
+#pedirCarta{
+    position: absolute;
+    bottom: 17px;
+    right: 245px;
+    font-size: 25px;
+}
+#iniciarPartida{
+    position: absolute;
+    bottom: 17px;
+    right: 410px;
+    font-size: 25px;
+}
+#cartasBanca{
+    position: absolute;
+    right: 0;
+    top: 120px;
+    right: 880px;
+    display: flex;
+}
+#cartasJugador{
+    display: flex;
+    position: absolute;
+    bottom: 200px;
+    left: 900px;
+}
+#resultado{
+    position: absolute;
+    left: 38%;
+    font-size: 113px;
+    color: red;
+    font-family: fantasy;
+    top: 31%;
+}
