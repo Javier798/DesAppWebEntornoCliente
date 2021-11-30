@@ -1,6 +1,14 @@
+var indice = 0;
+var sentencia = "";
+var ordenar = "";
+var cmapos = { "emp_no": "", "apellido": "", "dir": "", "fecha_alt": "", "salario": "", "comision": "", "salario": "", "dept_no": "" };
 function mostrarDatos() {
-    var numFilas = document.getElementById("selectFilas").value;
-    var indice = 0;
+    var numFilas = parseInt(document.getElementById("selectFilas").value);
+    if (indice == 0) {
+        document.getElementsByName("anterior")[0].disabled = true;
+    } else {
+        document.getElementsByName("anterior")[0].disabled = false;
+    }
     if (numFilas == "") {
         document.getElementById("tabla").innerHTML = "";
         return;
@@ -13,15 +21,21 @@ function mostrarDatos() {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
         xmlhttp.onreadystatechange = function () {
+            var numFilas = parseInt(document.getElementById("selectFilas").value);
             if (this.readyState == 4 && this.status == 200) {
                 var json = this.responseText;
-                resultados=eval(json);
+                resultados = eval(json);
                 var tabla = document.createElement('table');
-				tabla.setAttribute("border", 1);
+                tabla.setAttribute("border", 1);
                 var cabecera = construirCabecera();
-                tabla.id="tablaEmpleados";
+                tabla.id = "tablaEmpleados";
                 tabla.appendChild(cabecera);
-                for (let i = 0; i < resultados.length; i++) {
+                if (resultados.length == numFilas + 1) {
+                    document.getElementsByName("siguiente")[0].disabled = false;
+                } else {
+                    document.getElementsByName("siguiente")[0].disabled = true;
+                }
+                for (let i = 0; i < resultados.length - 1; i++) {
                     let fila = construirFila(resultados[i], i);
                     tabla.appendChild(fila);
                 }
@@ -29,83 +43,122 @@ function mostrarDatos() {
                 document.getElementById("tabla").appendChild(tabla);
             }
         };
-        xmlhttp.open("GET", "getEmpleados.php?q=" + numFilas + "&oculto=" + indice, true);
+        numFilas += 1;
+        xmlhttp.open("GET", "getEmpleados.php?q=" + numFilas + "&oculto=" + indice + "&ordenacion=" + ordenar, true);
         xmlhttp.send();
     }
 }
+function getIDDepartamentos() {
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var json = this.responseText;
+            returneval(json);
+        }
+    };
+    xmlhttp.open("GET", "getIDDepart.php", true);
+    xmlhttp.send();
 
+}
+function siguiente() {
+    var numFilas = document.getElementById("selectFilas").value;
+    indice += parseInt(numFilas);
+    mostrarDatos();
+}
+
+function anterior() {
+    var numFilas = document.getElementById("selectFilas").value;
+    indice -= parseInt(numFilas);
+    mostrarDatos();
+}
+function ordenacion(item) {
+    if (cmapos[item.id] == "" || cmapos[item.id] == "asc") {
+        cmapos[item.id] = "desc";
+        ordenar = "order by " + item.id + " desc";
+        setTimeout(() => {
+            item.innerHTML += " desc";
+        }, 2000);
+        mostrarDatos();
+    } else {
+        cmapos[item.id] = "asc";
+        ordenar = "order by " + item.id + " asc";
+        setTimeout(() => {
+            item.innerHTML += " desc";
+        }, 2000);
+        mostrarDatos();
+    }
+}
 function construirCabecera() {
     var cabecera = document.createElement('tr');
 
     var titulo = document.createElement('th');
     var texto = document.createTextNode("Núm. Empleado");
     titulo.appendChild(texto);
-    var funcion= function () {
-        ordenar(0);
-    };
-    titulo.onclick = funcion;
+    titulo.id = "emp_no";
+    titulo.addEventListener("click", () => {
+        ordenacion(document.getElementById("emp_no"));
+    });
     cabecera.appendChild(titulo);
 
     var titulo = document.createElement('th');
     var texto = document.createTextNode("Apellido");
-    var funcion= function () {
-        ordenar(1);
-    };
-    titulo.onclick = funcion;
+    titulo.id = "apellido";
+    titulo.addEventListener("click", () => {
+        ordenacion(document.getElementById("apellido"));
+    });
     titulo.appendChild(texto);
     cabecera.appendChild(titulo);
 
     var titulo = document.createElement('th');
     var texto = document.createTextNode("Oficio");
-    var funcion= function () {
-        ordenar(2);
-    };
-    titulo.onclick = funcion;
+    titulo.id = "oficio";
+    titulo.addEventListener("click", () => {
+        ordenacion(document.getElementById("oficio"));
+    });
     titulo.appendChild(texto);
     cabecera.appendChild(titulo);
 
     var titulo = document.createElement('th');
     var texto = document.createTextNode("Director");
-    var funcion= function () {
-        ordenar(3);
-    };
-    titulo.onclick = funcion;
+    titulo.id = "dir";
+    titulo.addEventListener("click", () => {
+        ordenacion(document.getElementById("dir"));
+    });
     titulo.appendChild(texto);
     cabecera.appendChild(titulo);
 
     var titulo = document.createElement('th');
     var texto = document.createTextNode("Fecha Alta");
-    var funcion= function () {
-        ordenar(4);
-    };
-    titulo.onclick = funcion;
+    titulo.id = "fecha_alt";
+    titulo.addEventListener("click", () => {
+        ordenacion(document.getElementById("fecha_alt"));
+    });
     titulo.appendChild(texto);
     cabecera.appendChild(titulo);
 
     var titulo = document.createElement('th');
     var texto = document.createTextNode("Salario");
-    var funcion= function () {
-        ordenar(5);
-    };
-    titulo.onclick = funcion;
+    titulo.id = "salario";
+    titulo.addEventListener("click", () => {
+        ordenacion(document.getElementById("salario"));
+    });
     titulo.appendChild(texto);
     cabecera.appendChild(titulo);
 
     var titulo = document.createElement('th');
     var texto = document.createTextNode("Comisión");
-    var funcion= function () {
-        ordenar(6);
-    };
-    titulo.onclick = funcion;
+    titulo.id = "comision";
+    titulo.addEventListener("click", () => {
+        ordenacion(document.getElementById("comision"));
+    });
     titulo.appendChild(texto);
     cabecera.appendChild(titulo);
 
     var titulo = document.createElement('th');
     var texto = document.createTextNode("Departamento");
-    var funcion= function () {
-        ordenar(7);
-    };
-    titulo.onclick = funcion;
+    titulo.id = "dept_no";
+    titulo.addEventListener("click", () => {
+        ordenacion(document.getElementById("dept_no"));
+    });
     titulo.appendChild(texto);
     cabecera.appendChild(titulo);
 
@@ -120,7 +173,7 @@ function construirFila(datos, n) {
     campo.className = "emp_no";
     campo.type = "number";
     campo.value = datos.emp_no;
-    campo.setAttribute("readonly",true);
+    campo.setAttribute("readonly", true);
     titulo.appendChild(campo);
     linea.appendChild(titulo);
 
@@ -129,7 +182,7 @@ function construirFila(datos, n) {
     campo.className = "apellido";
     campo.type = "text";
     campo.value = datos.apellido;
-    campo.onblur = function(){ actualizarFila(n) };
+    campo.onblur = function () { actualizarFila(n) };
     titulo.appendChild(campo);
     linea.appendChild(titulo);
 
@@ -138,7 +191,7 @@ function construirFila(datos, n) {
     campo.className = "oficio";
     campo.type = "text";
     campo.value = datos.oficio;
-    campo.onblur = function(){ actualizarFila(n) };
+    campo.onblur = function () { actualizarFila(n) };
     titulo.appendChild(campo);
     linea.appendChild(titulo);
 
@@ -147,7 +200,7 @@ function construirFila(datos, n) {
     campo.className = "dir";
     campo.type = "number";
     campo.value = datos.dir;
-    campo.onblur = function(){ actualizarFila(n) };
+    campo.onblur = function () { actualizarFila(n) };
     titulo.appendChild(campo);
     linea.appendChild(titulo);
 
@@ -156,7 +209,7 @@ function construirFila(datos, n) {
     campo.className = "fecha_alt";
     campo.type = "text";
     campo.value = datos.fecha_alt;
-    campo.onblur = function(){ actualizarFila(n) };
+    campo.onblur = function () { actualizarFila(n) };
     titulo.appendChild(campo);
     linea.appendChild(titulo);
 
@@ -165,7 +218,7 @@ function construirFila(datos, n) {
     campo.className = "salario";
     campo.type = "number";
     campo.value = datos.salario;
-    campo.onblur = function(){ actualizarFila(n) };
+    campo.onblur = function () { actualizarFila(n) };
     titulo.appendChild(campo);
     linea.appendChild(titulo);
 
@@ -174,7 +227,7 @@ function construirFila(datos, n) {
     campo.className = "comision";
     campo.type = "number";
     campo.value = datos.comision;
-    campo.onblur = function(){ actualizarFila(n) };
+    campo.onblur = function () { actualizarFila(n) };
     titulo.appendChild(campo);
     linea.appendChild(titulo);
 
@@ -183,7 +236,7 @@ function construirFila(datos, n) {
     campo.className = "dept_no";
     campo.type = "number";
     campo.value = datos.dept_no;
-    campo.onblur = function(){ actualizarFila(n) };
+    campo.onblur = function () { actualizarFila(n) };
     titulo.appendChild(campo);
     linea.appendChild(titulo);
 
